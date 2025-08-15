@@ -12,7 +12,8 @@ public class PredictionResponseDTO {
 
     private Double predictedValue;
     private String modelVersion;
-    private Double confidence;
+    //private Double confidence;
     private LocalDateTime createdAt;
+
 
 }
