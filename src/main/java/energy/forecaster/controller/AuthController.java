@@ -27,7 +27,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody UserLoginDTO loginDTO) {
         String token = userService.login(loginDTO);
-        return ResponseEntity.ok().body(token);
+        return ResponseEntity.ok().body(token); // return the JWT token as a string this will be used later for authorization later for protected endpoints
     }
 
 

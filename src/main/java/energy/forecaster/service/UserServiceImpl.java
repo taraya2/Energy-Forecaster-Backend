@@ -74,14 +74,14 @@ public class UserServiceImpl implements UserService{
     }
 
     public void changePassword(ChangePasswordDTO dto) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // grabs Bearer Jwt token
         if (auth == null || !(auth.getPrincipal() instanceof CustomUserDetails principal)) {
-            throw new IllegalStateException("User not authenticated");
+            throw new IllegalStateException("User not authenticated");  // validates if token is authorized
         }
         User u = users.findByEmail(principal.getUsername())
                 .orElseThrow(() -> new IllegalStateException("User not found"));
 
-        if (!encoder.matches(dto.getOldPassword(), u.getPasswordHash())) {
+        if (!encoder.matches(dto.getOldPassword(), u.getPasswordHash())) { // checks if password matches
             throw new IllegalArgumentException("Old password is incorrect");
         }
 
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public UserResponseDTO getCurrentUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // pulls JWT token
         if (auth == null || !(auth.getPrincipal() instanceof CustomUserDetails principal)) {
             throw new IllegalStateException("User not authenticated");
         }
