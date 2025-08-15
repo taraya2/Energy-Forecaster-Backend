@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Service
 @AllArgsConstructor
-public class EnergyConsumptionServiceImpl {
+public class EnergyConsumptionServiceImpl implements EnergyConsumptionService{
 
 
 }

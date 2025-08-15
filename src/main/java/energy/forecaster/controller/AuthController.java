@@ -30,6 +30,8 @@ public class AuthController {
         return ResponseEntity.ok().body(token);
     }
 
+
+    // get current user details
     @GetMapping("/me")
     public ResponseEntity<UserResponseDTO> getProfile() {
         return ResponseEntity.ok(userService.getCurrentUser());

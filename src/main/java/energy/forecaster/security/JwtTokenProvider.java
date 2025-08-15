@@ -58,5 +58,18 @@ public class JwtTokenProvider {
                 .build()
                 .parseClaimsJws(token);
     }
+
+    public String generateTokenFromUsernameAndRole(String username, String role) {
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime() + expirationMs);
+
+        return Jwts.builder()
+                .setSubject(username)
+                .claim("role", role)
+                .setIssuedAt(now)
+                .setExpiration(expiryDate)
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+    }
 }
 

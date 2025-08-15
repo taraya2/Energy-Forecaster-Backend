@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService{
 
     private final UserRepository users;
     private final PasswordEncoder encoder;
